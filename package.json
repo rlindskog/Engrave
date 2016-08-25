@@ -1,0 +1,24 @@
+{
+  "name": "engrave",
+  "version": "1.0.0",
+  "description": "Have controversial to say that you want to regret later in life? Great! Permanently engrave it to Engrave.io!",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rlindskog/Engrave.git"
+  },
+  "author": "Ryan Lindskog",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rlindskog/Engrave/issues"
+  },
+  "homepage": "https://github.com/rlindskog/Engrave#readme"
+}
