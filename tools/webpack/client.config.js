@@ -1,9 +1,9 @@
 const path = require('path')
 const rootDir = require('app-root-dir')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
-const { isDev } = require('../../config')
+const { isDev, isProd } = require('../../config')
 
 const clientConfig = {
   entry: {
@@ -36,8 +36,13 @@ const clientConfig = {
     ]
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: '"production"'
+      }
+    }),
     new webpack.optimize.CommonsChunkPlugin('vendor'),
-    new HtmlWebpackPlugin({
+    new HtmlPlugin({
       template: path.resolve(rootDir.get(), 'src', 'client', 'index.template.html'),
       filename: 'index.template.html'
     })

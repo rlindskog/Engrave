@@ -31,6 +31,11 @@ const ssrConfig = {
     ]
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: '"production"'
+      }
+    }),
     new VueSSRPlugin({
       filename: 'ssr.bundle.json',
       entry: 'ssr'
@@ -49,6 +54,7 @@ if (isDev) {
     new FriendlyErrorsWebpackPlugin()
   )
 }
+
 
 
 module.exports = ssrConfig
