@@ -3,8 +3,9 @@ const rootDir = require('app-root-dir')
 const NodeExternals = require('webpack-node-externals')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 const webpack = require('webpack')
+const { isDev } = require('../../config')
 
-module.exports = {
+const serverConfig = {
   target: 'node',
   entry: {
     server: [
@@ -36,9 +37,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
-    new FriendlyErrorsWebpackPlugin()
+
   ],
   resolve: {
     alias: {
@@ -47,3 +46,12 @@ module.exports = {
   },
   devtool: 'inline-source-map'
 }
+
+if (isDev) {
+  serverConfig.plugins.unshift(
+    new webpack.NoEmitOnErrorsPlugin(),
+    new FriendlyErrorsWebpackPlugin()
+  )
+}
+
+module.exports = serverConfig

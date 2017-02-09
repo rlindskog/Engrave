@@ -4,9 +4,9 @@ const path = require('path')
 const rootDir = require('app-root-dir')
 const VueSSRPlugin = require('vue-ssr-webpack-plugin')
 const webpack = require('webpack')
+const { isDev } = require('../../config')
 
-
-module.exports = {
+const ssrConfig = {
   target: 'node',
   entry: {
     ssr: path.resolve(rootDir.get(), 'src', 'shared', 'index')
@@ -31,8 +31,6 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.NoEmitOnErrorsPlugin(),
-    new FriendlyErrorsWebpackPlugin(),
     new VueSSRPlugin({
       filename: 'ssr.bundle.json',
       entry: 'ssr'
@@ -44,3 +42,13 @@ module.exports = {
     }
   }
 }
+
+if (isDev) {
+  ssrConfig.plugins.unshift(
+    new webpack.NoEmitOnErrorsPlugin(),
+    new FriendlyErrorsWebpackPlugin()
+  )
+}
+
+
+module.exports = ssrConfig

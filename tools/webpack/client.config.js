@@ -3,13 +3,18 @@ const rootDir = require('app-root-dir')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
+const { isDev } = require('../../config')
 
-module.exports = {
+const clientConfig = {
   entry: {
     client: [
-      // 'webpack-hot-middleware/client?path=/__what&timeout=2000&overlay=false',
-      'webpack-hot-middleware/client',
       path.resolve(rootDir.get(), 'src', 'client', 'index')
+    ],
+    vendor: [
+      'vue',
+      'vuex',
+      'vue-router',
+      'vuex-router-sync'
     ]
   },
   output: {
@@ -31,9 +36,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
-    new FriendlyErrorsWebpackPlugin(),
+    new webpack.optimize.CommonsChunkPlugin('vendor'),
     new HtmlWebpackPlugin({
       template: path.resolve(rootDir.get(), 'src', 'client', 'index.template.html'),
       filename: 'index.template.html'
@@ -44,12 +47,23 @@ module.exports = {
       'vue$': 'vue/dist/vue.js'
     }
   },
-  devtool: 'inline-source-map',
-  // devServer: {
-  //   hot: true,
-  //   contentBase: path.resolve(rootDir.get(), 'src', 'client'),
-  //   open: true,
-  //   port: 3000,
-  //   stats: 'errors-only'
-  // }
+
 }
+
+// dev config
+if (isDev) {
+  // entrt
+  clientConfig.entry.client.unshift('webpack-hot-middleware/client')
+
+  // plugins
+  clientConfig.plugins.unshift(
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
+    new FriendlyErrorsWebpackPlugin()
+  )
+
+  // devtool
+  clientConfig.devtool = 'inline-source-map'
+}
+
+module.exports = clientConfig

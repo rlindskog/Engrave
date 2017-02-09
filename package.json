@@ -1,12 +1,13 @@
 {
-  "name": "vuex-tut",
+  "name": "vueniverse",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
     "start": "node ./dist/server/server.bundle",
-    "build": "run-p build-server build-client build-ssr",
+    "build": "npm run build-ssr && run-p build-server build-client",
     "dev": "run-p dev-server",
+
     "dev-client": "webpack-dev-server --config ./tools/webpack/client.config",
     "dev-server": "node ./tools/dev/serverDev",
     "build-server": "webpack --config ./tools/webpack/server.config",
