@@ -24,7 +24,6 @@ export default {
 }
 </script>
 
-
 <style lang="css">
   #counter {
 
@@ -37,12 +36,13 @@ export default {
     width: 70px;
     height: 70px;
     border-radius: 10px;
-    box-shadow: 0px 3px 10px 2px rgba(0,0,0,.4);
+    box-shadow: 10px 10px 50px 0px rgba(0,0,0,0.75);
+
     cursor: pointer;
     transition: .25s;
   }
   .math:hover {
-    box-shadow: 0px 3px 10px 4px rgba(0,0,0,.4);
+    box-shadow: 10px 10px 70px 0px rgba(0,0,0,0.75);
   }
   .math:focus {
     outline: none;

@@ -19,7 +19,9 @@ if (process.env.NODE_ENV !== 'production') {
   app.use(devMiddleware(compiler, {
     publicPath: clientConfig.output.publicPath,
     // open: true,
-    stats: 'errors-only'
+    noInfo: true,
+    quiet: true,
+    stats: 'none'
   }))
   app.use(hotMiddleware(compiler))
 }
@@ -37,5 +39,6 @@ app.get('*', pageHandler)
 // hello world!
 app.listen(config.PORT, config.HOST, err => {
   if (err) throw err
-  console.log(`🌎 Listening at http://${config.HOST}:${config.PORT}`)
+  // console.log(`🌎 Listening at http://${config.HOST}:${config.PORT}`)
+  // To change console log, edit tools/webpack/server.config.js FriendlyErrorsWebpackPlugin()
 })

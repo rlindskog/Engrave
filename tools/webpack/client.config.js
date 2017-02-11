@@ -3,7 +3,10 @@ const rootDir = require('app-root-dir')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 const HtmlPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
-const { isDev, isProd } = require('../../config')
+const config = require('../../config')
+const isDev = config.isDev
+const isProd = config.isProd
+
 
 const clientConfig = {
   entry: {
@@ -19,7 +22,7 @@ const clientConfig = {
   },
   output: {
     path: path.resolve(rootDir.get(), 'dist', 'client'),
-    filename: '[name].bundle.js',
+    filename: '[name].[hash].bundle.js',
     publicPath: '/'
   },
   module: {
@@ -36,9 +39,15 @@ const clientConfig = {
     ]
   },
   plugins: [
+    new webpack.NoEmitOnErrorsPlugin(),
+    new FriendlyErrorsWebpackPlugin({
+      compilationSuccessInfo: {
+        messages: ['[client]'],
+      }
+    }),
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: '"production"'
+        NODE_ENV: '"development"'
       }
     }),
     new webpack.optimize.CommonsChunkPlugin('vendor'),
@@ -64,7 +73,11 @@ if (isDev) {
   clientConfig.plugins.unshift(
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
-    new FriendlyErrorsWebpackPlugin()
+    new FriendlyErrorsWebpackPlugin({
+      compilationSuccessInfo: {
+        messages: ['[client]'],
+      }
+    })
   )
 
   // devtool

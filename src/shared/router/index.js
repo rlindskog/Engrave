@@ -3,7 +3,12 @@ import VueRouter from 'vue-router'
 import {
   About,
   Home
-} from '../components'
+} from '../views'
+
+// import {
+//   AsyncHome,
+//   AsyncAbout
+// } from '../views'
 
 Vue.use(VueRouter)
 
@@ -17,6 +22,15 @@ const routes = [
     component: About
   }
 ]
+
+
+
+// function view(name) {
+//   let path = '../views/' + name + '.vue'
+//     return function(resolve) {
+//       require(['../views'], resolve)
+//     }
+// }
 
 const router = new VueRouter({
   mode: 'history',

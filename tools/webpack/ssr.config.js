@@ -4,7 +4,8 @@ const path = require('path')
 const rootDir = require('app-root-dir')
 const VueSSRPlugin = require('vue-ssr-webpack-plugin')
 const webpack = require('webpack')
-const { isDev } = require('../../config')
+const config = require('../../config')
+const isDev = config.isDev
 
 const ssrConfig = {
   target: 'node',
@@ -14,7 +15,7 @@ const ssrConfig = {
   output: {
     libraryTarget: 'commonjs2',
     path: path.resolve(rootDir.get(), 'dist', 'shared'),
-    filename: '[name].bundle.js'
+    filename: '[name].[chunkhash].bundle.js'
   },
   externals: [NodeExternals()],
   module: {

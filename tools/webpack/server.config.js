@@ -3,7 +3,8 @@ const rootDir = require('app-root-dir')
 const NodeExternals = require('webpack-node-externals')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 const webpack = require('webpack')
-const { isDev } = require('../../config')
+const config = require('../../config')
+const isDev = config.isDev
 
 const serverConfig = {
   target: 'node',
@@ -39,7 +40,7 @@ const serverConfig = {
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: '"production"'
+        NODE_ENV: '"development"'
       }
     }),
   ],
@@ -54,7 +55,11 @@ const serverConfig = {
 if (isDev) {
   serverConfig.plugins.unshift(
     new webpack.NoEmitOnErrorsPlugin(),
-    new FriendlyErrorsWebpackPlugin()
+    new FriendlyErrorsWebpackPlugin({
+      compilationSuccessInfo: {
+        messages: [`[server] 🌎  listening at http://${config.HOST}:${config.PORT}`],
+      }
+    })
   )
 }
 

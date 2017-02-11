@@ -5,13 +5,12 @@ import fs from 'fs'
 import { createBundleRenderer } from 'vue-server-renderer'
 import ssrBundle from '../../dist/shared/ssr.bundle.json'
 
-// gt the code from the json file from vue-ssr-webpack-plugin
-const bundleRenderer = createBundleRenderer(ssrBundle.files['ssr.bundle.js'])
+// get the code from the json file from vue-ssr-webpack-plugin
+const ssrCode = ssrBundle.files[ssrBundle.entry]
+const bundleRenderer = createBundleRenderer(ssrCode)
 
-// get the client
-const clientCode = fs.readFileSync(
-  path.resolve(rootDir.get(), 'dist', 'client', 'client.bundle.js'), 'UTF-8'
-)
+// old way
+// const bundleRenderer = createBundleRenderer(ssrBundle.files['ssr.bundle.js'])
 
 // indexTemplate
 const index = fs.readFileSync(

@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { app, store } from '../shared/app'
+import { app } from '../shared/app'
 
 
 // this file is not hot reloadable.  You don't need to...
