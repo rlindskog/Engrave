@@ -39,6 +39,5 @@ app.get('*', pageHandler)
 // hello world!
 app.listen(config.PORT, config.HOST, err => {
   if (err) throw err
-  // console.log(`🌎 Listening at http://${config.HOST}:${config.PORT}`)
   // To change console log, edit tools/webpack/server.config.js FriendlyErrorsWebpackPlugin()
 })
