@@ -1,7 +1,18 @@
 {
-  "name": "Vueniverse",
+  "name": "engrave",
+  "description": "Have something controversial to say that you want to regret later in life? Great! Permanently engrave it to Engrave.io!",
   "version": "1.0.0",
-  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rlindskog/Engrave.git"
+  },
+  "author": "Ryan Lindskog",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rlindskog/Engrave/issues"
+  },
+  "homepage": "https://github.com/rlindskog/Engrave#readme",
+  "main": "./src/server/index.js",
   "license": "MIT",
   "scripts": {
     "start": "NODE_ENV=production node ./dist/server/server.bundle",
