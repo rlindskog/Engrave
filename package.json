@@ -5,11 +5,11 @@
   "license": "MIT",
   "scripts": {
     "start": "NODE_ENV=production node ./dist/server/server.bundle",
-    "build": "NODE_ENV=productionrimraf dist && npm run build-ssr && run-p build-server build-client",
+    "build": "NODE_ENV=production rimraf dist && npm run build-ssr && run-p build-server build-client",
     "dev": "run-p dev-server",
 
     "bs": "run-s build start",
-    
+
     "dev-client": "webpack-dev-server --config ./tools/webpack/client.config",
     "dev-server": "node ./tools/dev/serverDev",
     "build-server": "webpack --config ./tools/webpack/server.config",
