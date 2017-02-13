@@ -4,14 +4,19 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "node ./dist/server/server.bundle",
-    "build": "rimraf dist && npm run build-ssr && run-p build-server build-client",
+    "start": "NODE_ENV=production node ./dist/server/server.bundle",
+    "build": "NODE_ENV=productionrimraf dist && npm run build-ssr && run-p build-server build-client",
     "dev": "run-p dev-server",
+
+    "bs": "run-s build start",
+    
     "dev-client": "webpack-dev-server --config ./tools/webpack/client.config",
     "dev-server": "node ./tools/dev/serverDev",
     "build-server": "webpack --config ./tools/webpack/server.config",
     "build-client": "webpack --config ./tools/webpack/client.config",
-    "build-ssr": "webpack --config ./tools/webpack/ssr.config"
+    "build-ssr": "webpack --config ./tools/webpack/ssr.config",
+
+    "push": "git status && git pull && git commit -am 'update' && git push"
   },
   "dependencies": {
     "app-root-dir": "^1.0.2",
