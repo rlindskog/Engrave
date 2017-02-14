@@ -23,7 +23,6 @@ const clientConfig = {
   output: {
     path: path.resolve(rootDir.get(), 'dist', 'client'),
     filename: '[name].[hash].bundle.js',
-    publicPath: '/'
   },
   module: {
     rules: [
@@ -54,7 +53,7 @@ const clientConfig = {
     }),
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: '"development"'
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV)
       }
     }),
     new webpack.optimize.CommonsChunkPlugin('vendor'),

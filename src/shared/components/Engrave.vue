@@ -10,12 +10,12 @@
 </template>
 
 <script>
-// let socket = io.connect('http://localhost')
-// socket.on('letter', letter) {
-//   console.log(letter);
-// });
+import io from 'socket.io-client'
+let socket = io('http://127.0.0.1:3000')
 export default {
+  ready() {
 
+  },
   data() {
     return {
       text: ''
@@ -26,12 +26,13 @@ export default {
       setTimeout(() => {
         let letter = e.target.value
         // send letter to server...
-        // fetch({
-        //   method: 'post'
-        // })
-        // socket.emit('my other event', { my: 'data' });
+        if (letter.length == 1) {
+          socket.emit('letter', { letter });
+          this.text += letter
+        } else {
+            e.target.value = ''
+        }
         // optimistic success
-        this.text += letter
         e.target.value = ''
       }, 0)
     },

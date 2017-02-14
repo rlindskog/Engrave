@@ -14,6 +14,7 @@ const ssrConfig = {
   },
   output: {
     libraryTarget: 'commonjs2',
+    publicPath: '/',
     path: path.resolve(rootDir.get(), 'dist', 'shared'),
     filename: '[name].[chunkhash].bundle.js'
   },
@@ -41,7 +42,7 @@ const ssrConfig = {
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: '"production"'
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV)
       }
     }),
     new VueSSRPlugin({

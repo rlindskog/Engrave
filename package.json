@@ -7,18 +7,18 @@
     "url": "git+https://github.com/rlindskog/Engrave.git"
   },
   "author": "Ryan Lindskog",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/rlindskog/Engrave/issues"
   },
   "homepage": "https://github.com/rlindskog/Engrave#readme",
   "main": "./src/server/index.js",
-  "license": "MIT",
   "scripts": {
-    "start": "NODE_ENV=production node ./dist/server/server.bundle",
-    "build": "NODE_ENV=production rimraf dist && npm run build-ssr && run-p build-server build-client",
+    "start": "node ./dist/server/server.bundle",
+    "build": "rimraf dist && npm run build-ssr && run-p build-server build-client",
     "dev": "run-p dev-server",
     "bs": "run-s build start",
+    "bd": "run-s build dev",
     "dev-client": "webpack-dev-server --config ./tools/webpack/client.config",
     "dev-server": "node ./tools/dev/serverDev",
     "build-server": "webpack --config ./tools/webpack/server.config",
@@ -30,6 +30,8 @@
     "app-root-dir": "^1.0.2",
     "dotenv": "^4.0.0",
     "express": "^4.14.1",
+    "socket.io": "^1.7.2",
+    "socket.io-client": "^1.7.2",
     "vue": "^2.1.10",
     "vue-router": "^2.2.0",
     "vue-server-renderer": "^2.1.10",
