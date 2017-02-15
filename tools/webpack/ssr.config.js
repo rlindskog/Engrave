@@ -34,7 +34,9 @@ const ssrConfig = {
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify(process.env.NODE_ENV)
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+        CLIENT: false,
+        SERVER: true
       }
     }),
     new VueSSRPlugin({

@@ -18,7 +18,6 @@ if (process.env.NODE_ENV !== 'production') {
   const compiler = webpack(clientConfig)
   app.use(devMiddleware(compiler, {
     publicPath: clientConfig.output.publicPath,
-    // open: true,
     noInfo: true,
     quiet: true,
     stats: 'none'
