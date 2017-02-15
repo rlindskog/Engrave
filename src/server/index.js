@@ -23,8 +23,8 @@ if (process.env.NODE_ENV !== 'production') {
   app.use(devMiddleware(compiler, {
     publicPath: clientConfig.output.publicPath,
     // open: true,
-    noInfo: true,
-    quiet: true,
+    // noInfo: true,
+    // quiet: true,
     stats: 'none'
   }))
   app.use(hotMiddleware(compiler))
@@ -48,6 +48,7 @@ server.listen(config.PORT, config.HOST, err => {
 })
 
 io.on('connection', socket => {
+  console.log(socket.nsp)
   socket.on('letter', data => {
     if (data.letter.length == 1) {
       console.log(data.letter)

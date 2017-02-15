@@ -16,7 +16,8 @@
   "scripts": {
     "start": "node ./dist/server/server.bundle",
     "build": "rimraf dist && npm run build-ssr && run-p build-server build-client",
-    "dev": "run-p dev-server",
+    "dev": "run-s build-dev dev-server",
+    "build-dev": "run-p build-client build-ssr",
     "bs": "run-s build start",
     "bd": "run-s build dev",
     "dev-client": "webpack-dev-server --config ./tools/webpack/client.config",

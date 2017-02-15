@@ -37,13 +37,7 @@ const serverConfig = {
       }
     ]
   },
-  plugins: [
-    // new webpack.DefinePlugin({
-    //   'process.env': {
-    //     NODE_ENV: JSON.stringify(process.env.NODE_ENV)
-    //   }
-    // }),
-  ],
+  plugins: [],
   resolve: {
     alias: {
       'vue$': 'vue/dist/vue.js'

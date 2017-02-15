@@ -7,8 +7,8 @@ import store from './vuex/store'
 sync(store, router)
 
 const app = new Vue({
-  store,
   router,
+  store,
   ...App
 })
 

@@ -11,7 +11,7 @@ export default context => {
   })).then(() => {
     // set initial store on context
     // the request handler will inline the state in the HTML response.
-    context.initialState = store.state
+    context.state = store.state
     return app
   })
 }

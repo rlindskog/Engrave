@@ -10,8 +10,12 @@
 </template>
 
 <script>
-import io from 'socket.io-client'
-let socket = io('http://127.0.0.1:3000')
+// import io from 'socket.io-client'
+// if (process.env.CLIENT) {
+//   let socket = io('http://127.0.0.1:3000')
+// }
+// console.log('NIIIIIIIICECEEEEE')
+console.log('asd')
 export default {
   ready() {
 
@@ -27,7 +31,10 @@ export default {
         let letter = e.target.value
         // send letter to server...
         if (letter.length == 1) {
-          socket.emit('letter', { letter });
+          console.log(letter)
+          // if (process.env.CLIENT) {
+          //   socket.emit('letter', { letter });
+          // }
           this.text += letter
         } else {
             e.target.value = ''

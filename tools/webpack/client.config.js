@@ -17,7 +17,8 @@ const clientConfig = {
       'vue',
       'vuex',
       'vue-router',
-      'vuex-router-sync'
+      'vuex-router-sync',
+      'socket.io-client'
     ]
   },
   output: {
@@ -45,15 +46,11 @@ const clientConfig = {
     ]
   },
   plugins: [
-    new webpack.NoEmitOnErrorsPlugin(),
-    new FriendlyErrorsWebpackPlugin({
-      compilationSuccessInfo: {
-        messages: ['[client]'],
-      }
-    }),
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify(process.env.NODE_ENV)
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+        CLIENT: true,
+        SERVER: false
       }
     }),
     new webpack.optimize.CommonsChunkPlugin('vendor'),
