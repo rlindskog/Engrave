@@ -11,7 +11,7 @@
     "bs": "run-s build start",
     "bd": "run-s build dev",
 
-    "build-dev": "run-p dev-client dev-ssr",
+    "build-dev": "run-p build-client build-ssr",
     "dev-client": "webpack-dev-server --config ./tools/webpack/client.config",
     "dev-server": "node ./tools/dev/serverDev",
     "build-server": "webpack --config ./tools/webpack/server.config",
