@@ -4,8 +4,6 @@ import path from 'path'
 import rootDir from 'app-root-dir'
 import { createBundleRenderer } from 'vue-server-renderer'
 
-// import ssrBundle from '../../dist/shared/ssr.bundle.json'
-
 // create the renderer using memory-fs or native fs, depending on NODE_ENV
 const createRenderer = fs => {
   const jsonBundle = fs.readFileSync(
