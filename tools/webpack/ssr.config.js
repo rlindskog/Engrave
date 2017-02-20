@@ -15,7 +15,8 @@ const ssrConfig = {
       'vue',
       'vuex',
       'vue-router',
-      'vuex-router-sync'
+      'vuex-router-sync',
+      'socket.io-client'
     ]
   },
   output: {

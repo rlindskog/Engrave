@@ -12,10 +12,12 @@
 <script>
 import io from 'socket.io-client'
 let socket
+
 export default {
-  ready() {
+  mounted() {
     if (process.env.CLIENT) {
       socket = io('http://127.0.0.1:3000')
+      console.log(socket)
     }
   },
   data() {
