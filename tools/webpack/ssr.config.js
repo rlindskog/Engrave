@@ -15,7 +15,6 @@ const ssrConfig = {
   output: {
     libraryTarget: 'commonjs2',
     path: path.resolve(rootDir.get(), 'dist', 'shared'),
-    filename: '[name].[chunkhash].bundle.js'
   },
   externals: [NodeExternals()],
   module: {
@@ -54,8 +53,15 @@ const ssrConfig = {
 if (isDev) {
   ssrConfig.plugins.unshift(
     new webpack.NoEmitOnErrorsPlugin(),
-    new FriendlyErrorsWebpackPlugin()
+    new FriendlyErrorsWebpackPlugin({
+      messages: ['[ssr]'],
+    })
   )
+  // Just use the name so HMR doesn't get confused.
+  ssrConfig.output.filename = '[name].bundle.js'
+} else {
+  // add a hash for cash busting.
+  ssrConfig.output.filename = '[name].[chunkhash].bundle.js'
 }
 
 

@@ -4,11 +4,37 @@ import path from 'path'
 import rootDir from 'app-root-dir'
 import { createBundleRenderer } from 'vue-server-renderer'
 
-import ssrBundle from '../../dist/shared/ssr.bundle.json'
+// import ssrBundle from '../../dist/shared/ssr.bundle.json'
 
-// get the code from the json file from vue-ssr-webpack-plugin
-const ssrCode = ssrBundle.files[ssrBundle.entry]
-const bundleRenderer = createBundleRenderer(ssrCode)
+// create the renderer using memory-fs or native fs, depending on NODE_ENV
+const createRenderer = fs => {
+  const jsonBundle = fs.readFileSync(
+    path.resolve(rootDir.get(), 'dist', 'shared', 'ssr.bundle.json'), 'UTF-8'
+  )
+  const ssrBundle = JSON.parse(jsonBundle)
+  const ssrCode = ssrBundle.files[ssrBundle.entry]
+  return createBundleRenderer(ssrCode)
+}
+
+// watch SSR bundle in memory-fs if in development
+let bundleRenderer
+if (process.env.NODE_ENV !== 'production') {
+  const webpack = require('webpack')
+  const ssrConfig = require('../../tools/webpack/ssr.config')
+  const ssrCompiler = webpack(ssrConfig)
+  const MFS = require('memory-fs')
+  const mfs = new MFS()
+  ssrCompiler.outputFileSystem = mfs
+  ssrCompiler.watch({}, (err, stats) => {
+    if (err) throw err
+    stats = stats.toJson()
+    stats.errors.forEach(err => console.error(err))
+    stats.warnings.forEach(err => console.warn(err))
+    bundleRenderer = createRenderer(fs)
+  })
+} else {
+  bundleRenderer = createRenderer(fs)
+}
 
 // indexTemplate
 const template = fs.readFileSync(

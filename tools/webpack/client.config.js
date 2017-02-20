@@ -22,7 +22,6 @@ const clientConfig = {
   },
   output: {
     path: path.resolve(rootDir.get(), 'dist', 'client'),
-    filename: '[name].[hash].bundle.js',
     publicPath: '/'
   },
   module: {
@@ -49,7 +48,7 @@ const clientConfig = {
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
         CLIENT: true,
-        SERVER: false
+        SERVER: true
       }
     }),
     new webpack.optimize.CommonsChunkPlugin('vendor'),
@@ -68,7 +67,7 @@ const clientConfig = {
 
 // dev config
 if (isDev) {
-  // entrt
+  // entry
   clientConfig.entry.client.unshift('webpack-hot-middleware/client')
 
   // plugins
@@ -81,9 +80,13 @@ if (isDev) {
       }
     })
   )
-
+  // Just use the name so HMR doesn't get confused.
+  clientConfig.output.filename = '[name].bundle.js'
   // devtool
   clientConfig.devtool = 'inline-source-map'
+} else {
+  // add a hash for cash busting.
+  clientConfig.output.filename = '[name].[hash].bundle.js'
 }
 
 module.exports = clientConfig
