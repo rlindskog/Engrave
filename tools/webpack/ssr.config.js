@@ -10,7 +10,13 @@ const isDev = config.isDev
 const ssrConfig = {
   target: 'node',
   entry: {
-    ssr: path.resolve(rootDir.get(), 'src', 'shared', 'index')
+    ssr: path.resolve(rootDir.get(), 'src', 'shared', 'index'),
+    vendor: [
+      'vue',
+      'vuex',
+      'vue-router',
+      'vuex-router-sync'
+    ]
   },
   output: {
     libraryTarget: 'commonjs2',

@@ -9,7 +9,8 @@
   </div>
 </template>
 
-<!-- this is just a root component that holds out store, no need for scripts -->
+<!-- this is just a root component that holds out store, no need for scripts,
+unless you wanted to include some components -->
 
 <style lang="css">
   #app {
