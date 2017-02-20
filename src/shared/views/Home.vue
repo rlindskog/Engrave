@@ -1,19 +1,13 @@
 <template lang="html">
   <div id="home">
-    <h2 class="text">This is the {{name}} page</h2>
-    <counter></counter>
+    <engrave></engrave>
   </div>
 </template>
 
 <script>
-import Counter from '../components/Counter.vue'
+import {Engrave} from '../components'
 export default {
-  data() {
-    return {
-      name: 'Home'
-    }
-  },
-  components: { Counter }
+  components: { Engrave }
 }
 </script>
 

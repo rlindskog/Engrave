@@ -1,16 +1,13 @@
 <template lang="html">
   <div id="app">
     <nav id="nav">
-      <router-link class="link" to="/">Home</router-link>
-      <router-link class="link" to="/about">About</router-link>
     </nav>
-
+    
     <router-view></router-view>
   </div>
 </template>
 
-<!-- this is just a root component that holds out store, no need for scripts,
-unless you wanted to include some components -->
+<!-- this is just a root component that holds out store, no need for scripts -->
 
 <style lang="css">
   #app {

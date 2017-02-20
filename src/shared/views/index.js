@@ -1,5 +1,4 @@
 export Home from './Home.vue'
-export About from './About.vue'
 
 
 // import Vue from 'vue'
