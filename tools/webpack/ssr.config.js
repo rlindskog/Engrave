@@ -33,6 +33,13 @@ const ssrConfig = {
         test:/\.js$/,
         loader: 'babel-loader',
         exclude: /node_modules/
+      },
+      {
+        test: /\.(png|jpg|gif|svg|woff2?|ttf|svg|eot)$/,
+        loader: 'file-loader',
+        options: {
+          name: '[name].[hash].[ext]'
+        }
       }
     ]
   },

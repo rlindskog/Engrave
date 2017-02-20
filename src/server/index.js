@@ -1,9 +1,12 @@
 import api from './api'
 import config from '../../config'
 import express from 'express'
+import http from 'http'
 import rootDir from 'app-root-dir'
+import socketIO from 'socket.io'
 import path from 'path'
 import pageHandler from './pageHandler'
+
 
 // dev dependencies
 import webpack from 'webpack'
@@ -11,7 +14,9 @@ import devMiddleware from 'webpack-dev-middleware'
 import hotMiddleware from 'webpack-hot-middleware'
 import clientConfig from '../../tools/webpack/client.config'
 
+const io = socketIO()
 const app = express()
+const server = http.createServer(app)
 
 // dev middleware
 if (process.env.NODE_ENV !== 'production') {

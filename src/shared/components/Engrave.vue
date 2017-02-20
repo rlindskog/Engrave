@@ -14,8 +14,6 @@
 // if (process.env.CLIENT) {
 //   let socket = io('http://127.0.0.1:3000')
 // }
-// console.log('NIIIIIIIICECEEEEE')
-console.log('asd')
 export default {
   ready() {
 
