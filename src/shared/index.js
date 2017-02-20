@@ -9,7 +9,6 @@ export default context => {
       return component.prefetch(store)
     }
   })).then(() => {
-    console.log(`data pre-fetch: ${Date.now() - s}ms`)
     // set initial store on context
     // the request handler will inline the state in the HTML response.
     context.state = store.state
