@@ -10,13 +10,13 @@
 </template>
 
 <script>
-// import io from 'socket.io-client'
-// if (process.env.CLIENT) {
-//   let socket = io('http://127.0.0.1:3000')
-// }
+import io from 'socket.io-client'
+let socket
 export default {
   ready() {
-
+    if (process.env.CLIENT) {
+      socket = io('http://127.0.0.1:3000')
+    }
   },
   data() {
     return {
@@ -30,9 +30,9 @@ export default {
         // send letter to server...
         if (letter.length == 1) {
           console.log(letter)
-          // if (process.env.CLIENT) {
-          //   socket.emit('letter', { letter });
-          // }
+          if (process.env.CLIENT) {
+            socket.emit('letter', { letter });
+          }
           this.text += letter
         } else {
             e.target.value = ''

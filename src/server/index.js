@@ -47,7 +47,7 @@ app.listen(config.PORT, config.HOST, err => {
 })
 
 io.on('connection', socket => {
-  console.log(socket.nsp)
+  console.log('socket server lsting..')
   socket.on('letter', data => {
     if (data.letter.length == 1) {
       console.log(data.letter)
