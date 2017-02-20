@@ -17,7 +17,6 @@ const template = fs.readFileSync(
 
 // the request handler...
 export default (req, res) => {
-  let s = Date.now()
   const context = { url: req.url }
   const renderStream = bundleRenderer.renderToStream(context)
 
