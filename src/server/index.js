@@ -14,9 +14,9 @@ import devMiddleware from 'webpack-dev-middleware'
 import hotMiddleware from 'webpack-hot-middleware'
 import clientConfig from '../../tools/webpack/client.config'
 
-const io = socketIO()
 const app = express()
 const server = http.createServer(app)
+const io = socketIO(server)
 
 // dev middleware
 if (process.env.NODE_ENV !== 'production') {
