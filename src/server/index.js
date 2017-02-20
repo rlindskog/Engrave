@@ -45,3 +45,13 @@ app.listen(config.PORT, config.HOST, err => {
   if (err) throw err
   // To change console log, edit tools/webpack/server.config.js FriendlyErrorsWebpackPlugin()
 })
+
+io.on('connection', socket => {
+  console.log(socket.nsp)
+  socket.on('letter', data => {
+    if (data.letter.length == 1) {
+      console.log(data.letter)
+    }
+  })
+  console.log('connect')
+})
