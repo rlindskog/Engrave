@@ -16,7 +16,9 @@ let socket
 
 export default {
   mounted() {
-    this.$socket.on('letter', data => {this.serverText += data.letter})
+    if (process.env.CLIENT) {
+      this.$socket.on('letter', data => {this.serverText += data.letter})
+    }
   },
   data() {
     return {
@@ -30,7 +32,9 @@ export default {
         let letter = e.target.value
         // send letter to server...
         if (letter.length == 1) {
-          this.$socket.emit('letter', { letter });
+          if (process.env.CLIENT) {
+            this.$socket.emit('letter', { letter });
+          }
           this.text += letter
         } else {
             e.target.value = ''
