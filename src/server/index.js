@@ -1,12 +1,11 @@
-import api from './api'
-import config from '../../config'
 import express from 'express'
 import http from 'http'
+import path from 'path'
 import rootDir from 'app-root-dir'
 import socketIO from 'socket.io'
-import path from 'path'
 import pageHandler from './pageHandler'
-
+import api from './api'
+import config from '../../config'
 
 // dev dependencies
 import webpack from 'webpack'
@@ -30,6 +29,8 @@ if (process.env.NODE_ENV !== 'production') {
   app.use(hotMiddleware(compiler))
 }
 
+// database connection
+mongoose.connect()
 
 // middleware
 app.use(express.static(path.resolve(rootDir.get(), 'dist', 'client')))
@@ -58,7 +59,8 @@ io.on('connection', socket => {
   socket.on('letter', data => {
     let letter = data.letter
     if (letter.length == 1) {
-      delay()
+      // save to the data base...
+      // delay()
       io.sockets.emit('letter', { letter } ) // add user data later...
     }
   })
