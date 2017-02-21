@@ -11,9 +11,13 @@
 </template>
 
 <script>
+
 export default {
-  mounted() {
-    this.$socket.on('letter', data => {this.serverText += data.letter})
+  // listeners....
+  sockets: {
+    letter(data) {
+      this.serverText += data.letter
+    }
   },
   data() {
     return {
