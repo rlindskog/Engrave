@@ -28,6 +28,7 @@ export default {
         // send letter to server...
         if (letter.length == 1) {
           this.$store.commit('letter', { letter })
+          this.$socket.emit('letter', { letter })
           // this.text += letter
         } else {
             e.target.value = ''
