@@ -17,7 +17,6 @@ const store = new Vuex.Store({
     // socket listeners...
     SOCKET_letter(state, data) {
       let letter = data.letter
-      console.log(letter)
       state.serverText += letter
     }
   }

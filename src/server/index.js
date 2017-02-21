@@ -40,6 +40,13 @@ app.use('/api', api)
 // handle pages :)
 app.get('*', pageHandler)
 
+function delay() {
+  let x = 0
+  while (x < 599999999) {
+    x++
+  }
+}
+
 // hello world!
 server.listen(config.PORT, config.HOST, err => {
   if (err) throw err
@@ -51,8 +58,8 @@ io.on('connection', socket => {
   socket.on('letter', data => {
     let letter = data.letter
     if (letter.length == 1) {
+      delay()
       io.sockets.emit('letter', { letter } ) // add user data later...
-      console.log(data.letter)
     }
   })
 })
