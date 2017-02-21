@@ -11,14 +11,9 @@
 </template>
 
 <script>
-import io from 'socket.io-client'
-let socket
-
 export default {
   mounted() {
-    if (process.env.CLIENT) {
-      this.$socket.on('letter', data => {this.serverText += data.letter})
-    }
+    this.$socket.on('letter', data => {this.serverText += data.letter})
   },
   data() {
     return {
@@ -32,9 +27,7 @@ export default {
         let letter = e.target.value
         // send letter to server...
         if (letter.length == 1) {
-          if (process.env.CLIENT) {
-            this.$socket.emit('letter', { letter });
-          }
+          this.$socket.emit('letter', { letter });
           this.text += letter
         } else {
             e.target.value = ''
