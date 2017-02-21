@@ -47,9 +47,11 @@ server.listen(config.PORT, config.HOST, err => {
 })
 
 io.on('connection', socket => {
-  console.log('socket server connected..')
+  console.log('socket server connected...')
   socket.on('letter', data => {
-    if (data.letter.length == 1) {
+    let letter = data.letter
+    if (letter.length == 1) {
+      socket.emit('letter', { letter } )
       console.log(data.letter)
     }
   })

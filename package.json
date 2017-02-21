@@ -21,6 +21,7 @@
     "vue": "^2.1.10",
     "vue-router": "^2.2.0",
     "vue-server-renderer": "^2.1.10",
+    "vue-socket.io": "^2.1.0",
     "vue-ssr-html-stream": "^2.1.0",
     "vuex": "^2.1.2",
     "vuex-router-sync": "^4.1.2"

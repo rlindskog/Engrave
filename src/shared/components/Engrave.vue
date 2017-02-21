@@ -6,6 +6,7 @@
       <input id="engrave-input" v-on:keydown="keyPressed"></input>
       <button id="engrave-submit" class="inactive" v-on:click="engraved">Engrave</input>
     </div>
+    <p>{{serverText}}</p>
   </div>
 </template>
 
@@ -15,14 +16,12 @@ let socket
 
 export default {
   mounted() {
-    if (process.env.CLIENT) {
-      socket = io('http://127.0.0.1:3000')
-      console.log(socket)
-    }
+    this.$socket.on('letter', data => {this.serverText += data.letter})
   },
   data() {
     return {
-      text: ''
+      text: '',
+      serverText: ''
     }
   },
   methods: {
@@ -31,10 +30,7 @@ export default {
         let letter = e.target.value
         // send letter to server...
         if (letter.length == 1) {
-          console.log(letter)
-          if (process.env.CLIENT) {
-            socket.emit('letter', { letter });
-          }
+          this.$socket.emit('letter', { letter });
           this.text += letter
         } else {
             e.target.value = ''
