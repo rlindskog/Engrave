@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import {
-  Home
+  Home,
+  Auth
 } from '../views'
 
 
@@ -11,6 +12,10 @@ const routes = [
   {
     path: '/',
     component: Home
+  },
+  {
+    path: '/auth',
+    component: Auth
   }
 ]
 

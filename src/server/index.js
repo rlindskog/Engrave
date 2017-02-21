@@ -51,7 +51,7 @@ io.on('connection', socket => {
   socket.on('letter', data => {
     let letter = data.letter
     if (letter.length == 1) {
-      socket.emit('letter', { letter } )
+      io.sockets.emit('letter', { letter } ) // add user data later...
       console.log(data.letter)
     }
   })

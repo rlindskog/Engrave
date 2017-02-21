@@ -1,5 +1,5 @@
 export Home from './Home.vue'
-
+export Auth from './Auth.vue'
 
 // import Vue from 'vue'
 //

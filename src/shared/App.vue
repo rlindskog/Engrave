@@ -1,14 +1,20 @@
 <template lang="html">
   <div id="app">
-    <nav id="nav">
-    </nav>
-    
+    <nav-bar/>
+
     <router-view></router-view>
   </div>
 </template>
 
 <!-- this is just a root component that holds out store, no need for scripts -->
-
+<script>
+import { NavBar } from './components'
+export default {
+  components: {
+    NavBar
+  }
+}
+</script>
 <style lang="css">
   #app {
     text-align: center

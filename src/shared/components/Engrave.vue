@@ -13,16 +13,12 @@
 <script>
 
 export default {
-  // listeners....
-  sockets: {
-    letter(data) {
-      this.serverText += data.letter
-    }
-  },
-  data() {
-    return {
-      text: '',
-      serverText: ''
+  computed: {
+    text() {
+      return this.$store.state.text
+    },
+    serverText() {
+      return this.$store.state.serverText
     }
   },
   methods: {
@@ -31,8 +27,8 @@ export default {
         let letter = e.target.value
         // send letter to server...
         if (letter.length == 1) {
-          this.$socket.emit('letter', { letter });
-          this.text += letter
+          this.$store.commit('letter', { letter })
+          // this.text += letter
         } else {
             e.target.value = ''
         }

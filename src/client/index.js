@@ -1,6 +1,6 @@
-import socket from 'socket.io-client'
-import VueSocketio from 'vue-socket.io'
 import Vue from 'vue'
+import VueSocketio from 'vue-socket.io'
+import socket from 'socket.io-client'
 import { app, store } from '../shared/app'
 
 Vue.use(VueSocketio, socket('http://127.0.0.1:3000'), store)

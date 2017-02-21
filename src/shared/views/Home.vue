@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import {Engrave} from '../components'
+import { Engrave } from '../components'
 export default {
   components: { Engrave }
 }
