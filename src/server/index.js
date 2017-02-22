@@ -1,5 +1,7 @@
+import bodyParser from 'body-parser'
 import express from 'express'
 import http from 'http'
+import jwt from 'jsonwebtoken'
 import path from 'path'
 import rootDir from 'app-root-dir'
 import socketIO from 'socket.io'
@@ -29,11 +31,10 @@ if (process.env.NODE_ENV !== 'production') {
   app.use(hotMiddleware(compiler))
 }
 
-// database connection
-mongoose.connect()
-
 // middleware
 app.use(express.static(path.resolve(rootDir.get(), 'dist', 'client')))
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 
 // the api routes
 app.use('/api', api)
